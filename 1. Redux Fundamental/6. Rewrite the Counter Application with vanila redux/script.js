@@ -25,6 +25,11 @@ const decrement = (value) => {
 // initial state
 const initialState = {
   value: 0,
+
+  properties: {
+    a: 5,
+    b: 6,
+  },
 };
 
 // create reducer function
@@ -39,6 +44,15 @@ function counterReducer(state = initialState, action) {
       ...state,
       value: state.value - action.payload,
     };
+  } else if (action.type === ITEST) {
+    const updatedState = {
+      ...state,
+      properties: {
+        ...state.properties,
+        b: state.properties.b + 1,
+      },
+    };
+    return updatedState;
   } else {
     return state;
   }
