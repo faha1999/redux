@@ -11,7 +11,7 @@ export default function TodoList() {
       case 'Complete':
         return todo.completed;
 
-      case 'InCompleted':
+      case 'Incomplete':
         return !todo.completed;
 
       default:
