@@ -1,48 +1,49 @@
-const { createStore, applyMiddleware } = require("redux");
+const { createStore, applyMiddleware } = require('redux');
 const {
-    delayActionMiddleware,
-    fetchTodosMiddleware,
-} = require("./middlewares");
+  delayActionMiddleware,
+  fetchAsyncMiddleware,
+} = require('./middlewares');
+const { fetchTodos } = require('./functions');
 
 // initial state
 const initialState = {
-    todos: [],
+  todos: [],
 };
 
 // reducer
 const todoReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "todos/todoAdded":
-            return {
-                ...state,
-                todos: [
-                    ...state.todos,
-                    {
-                        title: action.payload,
-                    },
-                ],
-            };
+  switch (action.type) {
+    case 'todos/todoAdded':
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          {
+            title: action.payload,
+          },
+        ],
+      };
 
-        case "todos/todoLoaded":
-            return {
-                ...state,
-                todos: [...state.todos, ...action.payload],
-            };
+    case 'todos/todoLoaded':
+      return {
+        ...state,
+        todos: [...state.todos, ...action.payload],
+      };
 
-        default:
-            break;
-    }
+    default:
+      break;
+  }
 };
 
 // store
 const store = createStore(
-    todoReducer,
-    applyMiddleware(delayActionMiddleware, fetchTodosMiddleware)
+  todoReducer,
+  applyMiddleware(delayActionMiddleware, fetchAsyncMiddleware),
 );
 
 // subscribe to state changes
 store.subscribe(() => {
-    console.log(store.getState());
+  console.log(store.getState());
 });
 
 // disptach actions
@@ -51,6 +52,4 @@ store.subscribe(() => {
 //     payload: "Learn Redux from LWS",
 // });
 
-store.dispatch({
-    type: "todos/fetchTodos",
-});
+store.dispatch(fetchTodos);
