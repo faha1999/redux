@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import tickImage from '../assets/images/double-tick.png';
 import noteImage from '../assets/images/notes.png';
 import plusImage from '../assets/images/plus.png';
-import { added, allCompleted, clearCompleted } from '../redux/todos/actions';
+import { allCompleted, clearCompleted } from '../redux/todos/actions';
 import addTodo from '../redux/todos/thunk/addTodo';
 
 export default function Header() {
