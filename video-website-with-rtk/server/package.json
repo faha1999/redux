@@ -7,7 +7,7 @@
         "start": "json-server --watch db_videos.json --no-cors true --port 9000"
     },
     "dependencies": {
-        "json-server": "^0.17.0"
+        "json-server": "^0.17.2"
     },
     "keywords": [],
     "author": "Sumit Saha, Learn with Sumit"
